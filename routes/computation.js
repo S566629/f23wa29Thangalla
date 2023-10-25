@@ -1,18 +1,24 @@
 var express = require('express');
 var router = express.Router();
 var random=(Math.random()).toFixed(2);
-var result=0;
+
 router.get('/', function(req, res, next) {
 
-    var abs=Math.abs(random).toFixed(2);
-    var acos=Math.acos(random).toFixed(2);
-    var sin=Math.sin(random).toFixed(2);
+  console.log("==>",req.query.x);
+    
+ var x=req.query.x;
+    if (x == undefined) {
+      x = random;
+    }
+    var abs=Math.abs(x);
+    var acos=Math.cos(x);
+    var sin=Math.sin(x);
     
 
     res.render("computation", {
-      abs: `Math.abs value of  f(${random}) is ${abs}.`,
-      acos: `Math.acos value of f(${random}) is ${acos}.`,
-      sin: `Math.sin value of (${random}) is ${sin}.`
+      abs: `Math.abs value of  f(${x}) is ${abs}.`,
+      acos: `Math.acos value of f(${x}) is ${acos}.`,
+      sin: `Math.sin value of (${x}) is ${sin}.`
     })
   });
     
